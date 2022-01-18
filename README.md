@@ -17,3 +17,15 @@ Context: Using AWS Glue to import records from DynamoDB and convert them to Parq
 Cause: The Parquet file had a column which was a struct, the struct had a duplicated field with different casing, i.e. myField1 vs myfield1
 
 Solution: Ensure no duplicated (irrespective of case) fields exist within nested objects (merge myField1 and myfield1 into one, or drop one)
+
+## SYNTAX_ERROR: line 1:8: SELECT * not allowed from relation that has no columns
+
+Date: 2022-01-19
+
+Related: Athena, Lake Formation
+
+Issue: Table does have columns but scanning returns an error claiming no columns exist
+
+Cause: Lack of permissions
+
+Solution: Ensure you've granted sufficient permissions in Lake Formation to describe and select the table
